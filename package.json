@@ -1,0 +1,45 @@
+{
+  "name": "exercize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:migrate:make": "knex migrate:make test --env development",
+    "db:migrate": "npx knex migrate:latest",
+    "db:seed": "npx knex seed:run",
+    "db:migrate:prod": "",
+    "dev": "node --watch ./src/server.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "test": "NODE_ENV=test node bin/test.js unit --bail",
+    "test:e2e": "NODE_ENV=test node bin/test.js e2e --bail",
+    "testserver": "NODE_ENV=test node ./src/server.js"
+  },
+  "keywords": [],
+  "author": "LuKa",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "ajv-formats": "^3.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-json-validator-middleware": "^3.0.1",
+    "knex": "^3.1.0",
+    "nanoid": "^5.1.5",
+    "pino": "^9.6.0",
+    "pino-http": "^10.4.0",
+    "pino-pretty": "^13.0.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@japa/api-client": "^3.0.4",
+    "@japa/expect": "^3.0.3",
+    "@japa/runner": "^4.2.0",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.2.6",
+    "globals": "^16.0.0"
+  }
+}
