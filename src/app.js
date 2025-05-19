@@ -12,6 +12,7 @@ import getLogger from './logger.js';
 import getDB from './db.js';
 
 import rootRoutes from './api/root.routes.js';
+import { getCategoryRoutes } from './api/categories/category.routes.js';
 
 // const whitelist = ['http://localhost:8080' /** other domains if any */]
 
@@ -63,7 +64,7 @@ export default function getApplication(opt = { cnf: getConfig(), log: getLogger(
       }
 
       // Attach routes
-      addGroupedRoutes([rootRoutes]);
+      addGroupedRoutes([rootRoutes, getCategoryRoutes()]);
       app.use(router);
 
       // Add 404 handler
@@ -103,19 +104,19 @@ export default function getApplication(opt = { cnf: getConfig(), log: getLogger(
       log.info('Starting server...');
 
       try {
-        await db('knex_migrations');
-        log.info('Database connected');
+        await db.connect;
       } catch (err) {
         log.error(err, 'Database connection error:');
       }
 
       app.listen(cnf.port, () => {
-        log.info(`Server running on port ${cnf.port}`);
+        log.info(`Server running on p
+          ort ${cnf.port}`);
       });
     },
     async stop() {
       try {
-        await db.destroy();
+        await db.disconnect();
         log.info('Database connection closed');
       } catch (err) {
         log.error(err, 'Database disconnection error:');

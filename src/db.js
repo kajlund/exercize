@@ -1,10 +1,33 @@
 import knex from 'knex';
 
-import knexConfigs from '../knexfile.js';
+import knexFile from '../knexfile.js';
 import getConfig from './config.js';
+import getLogger from './logger.js';
 
-export default function (opt = { cnf: getConfig(), knexCnfs: knexConfigs }) {
-  const { cnf, knexCnfs } = opt;
+const cnf = getConfig();
+const log = getLogger({ cnf });
+const conn = knex(knexFile[cnf.nodeEnv]);
 
-  return knex(knexCnfs[cnf.nodeEnv]);
+export default function getDB() {
+  return {
+    knex: conn,
+    connect: async () => {
+      try {
+        await conn.raw('SELECT 1+1 AS result');
+        log.info('Database connection established');
+      } catch (error) {
+        log.error(error, 'Database connection failed:');
+        throw error;
+      }
+    },
+    disconnect: async () => {
+      try {
+        await conn.destroy();
+        log.info('Database connection closed');
+      } catch (error) {
+        log.error(error, 'Error closing database connection:');
+        throw error;
+      }
+    },
+  };
 }
