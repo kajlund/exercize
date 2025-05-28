@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid';
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -10,31 +8,31 @@ export async function seed(knex) {
 
   await knex('activities').insert([
     {
-      id: nanoid(24),
-      when: '2025-05-05',
-      category: 'dvzGcmLVGCYvKXYR5xeh2KBW',
-      title: '',
-      comment: '',
-      duration: 74,
-      distance: 5100,
-      pace: 60,
-      elevation: 21,
-      calories: 420,
-      heartrate: 75,
-      cadence: 0,
+      id: 'ec5d6863-c127-4978-b8c6-2d5dc0818414',
+      activityDate: '2025-05-05',
+      categoryId: '3c72842a-6732-4e8e-842a-36e0b59077fd',
+      title: 'Lunch Walk',
+      comment: 'Walk around the hood during lunch break',
+      duration: 2422,
+      distance: 3400,
+      pace: 11,
+      elevation: 16,
+      calories: 179,
+      heartrate: 104,
+      cadence: 119,
     },
     {
-      id: nanoid(24),
-      when: '2025-05-01',
-      category: 'DUjdvCHRTX9pYar3IwgozYe9',
-      title: '',
-      comment: '',
-      duration: 37,
+      id: 'a02b2eb8-45f5-4153-87ed-65addf958cb1',
+      activityDate: '2025-05-02',
+      categoryId: '20da171e-1f15-4e21-bf47-0d9567acca32',
+      title: 'Afternoon Workout',
+      comment: 'Gym session focusing on strength training',
+      duration: 2176,
       distance: 0,
       pace: 0,
       elevation: 0,
-      calories: 310,
-      heartrate: 70,
+      calories: 0,
+      heartrate: 0,
       cadence: 0,
     },
   ]);

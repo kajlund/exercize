@@ -9,10 +9,15 @@ The server loads environment variables using dotenv package until knex command c
 ### Dependencies
 
 - [Ajv JSON schema validator](https://ajv.js.org/)
-- [Express.js v4](https://expressjs.com/)
+- [Express.js](https://expressjs.com/)
 - [Knex.js](https://knexjs.org/) SQL Query Builder
 - [SQLite](https://sqlite.org)
 - [Pino](https://getpino.io/#/) logging
 - [pino-http](https://github.com/pinojs/pino-http#readme)
 - [pino-pretty](https://github.com/pinojs/pino-pretty#readme)
 
+### Development Dependencies
+
+- [Eslint](https://eslint.org/)
+- [Japa](https://japa.dev/docs/introduction) testing framework
+- [Prettier](https://prettier.io/) code formatter

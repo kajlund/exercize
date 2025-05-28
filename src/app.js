@@ -13,6 +13,7 @@ import getDB from './db.js';
 
 import rootRoutes from './api/root.routes.js';
 import { getCategoryRoutes } from './api/categories/category.routes.js';
+import { getActivityRoutes } from './api/activities/activity.routes.js';
 
 // const whitelist = ['http://localhost:8080' /** other domains if any */]
 
@@ -66,7 +67,7 @@ export default function getApplication(opt = { cnf: getConfig(), log: getLogger(
       }
 
       // Attach routes
-      addGroupedRoutes([rootRoutes, getCategoryRoutes()]);
+      addGroupedRoutes([rootRoutes, getCategoryRoutes(), getActivityRoutes()]);
       app.use(router);
 
       // Add 404 handler

@@ -11,8 +11,8 @@ export async function up(knex) {
 
   await knex.schema.createTable('activities', (table) => {
     table.uuid('id', { useBinaryUuid: false, primaryKey: true });
-    table.date('when').nullable().defaultTo(null);
-    table.uuid('category').references('id').inTable('category').onDelete('SET NULL');
+    table.date('activityDate').nullable().defaultTo(null);
+    table.uuid('categoryId').references('id').inTable('category').onDelete('SET NULL');
     table.string('title').notNullable().defaultTo('');
     table.text('comment').notNullable().defaultTo('');
     table.integer('duration').notNullable().defaultTo(0);

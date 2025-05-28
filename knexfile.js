@@ -11,6 +11,7 @@ export default {
     connection: {
       filename: './dev.sqlite3',
     },
+    useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
       tableName: 'knex_migrations',

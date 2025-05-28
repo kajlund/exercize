@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import crypto from 'node:crypto';
 
 import getLogger from './logger.js';
 import getDB from './db.js';
@@ -14,7 +14,7 @@ export default function (table = '') {
    */
   async function create(data) {
     try {
-      if (!data.id) data.id = nanoid(24);
+      if (!data.id) data.id = crypto.randomUUID();
       log.debug(data, `dao.create for table ${table}:`);
       await db.knex(table).insert(data);
       return data.id;
