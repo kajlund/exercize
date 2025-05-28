@@ -48,6 +48,11 @@ const configSchema = {
       default: 0,
       description: 'Enable HTTP logging',
     },
+    cookieSecret: {
+      type: 'string',
+      minLength: 32,
+      description: 'Secret key used for signing cookies',
+    },
   },
 };
 
@@ -62,6 +67,7 @@ export default function getConfig(env = process.env) {
     port: parseInt(env.PORT),
     logLevel: env.LOG_LEVEL,
     logHttp: parseInt(env.LOG_HTTP),
+    cookieSecret: env.COOKIE_SECRET,
   };
 
   const result = validate(cnf);

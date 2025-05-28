@@ -1,5 +1,5 @@
 // import path from 'node:path';
-
+import cookieParser from 'cookie-parser';
 import express from 'express';
 import httpLogger from 'pino-http';
 import cors from 'cors';
@@ -50,6 +50,8 @@ export default function getApplication(opt = { cnf: getConfig(), log: getLogger(
       app.set('trust proxy', 1); // trust first proxy
       app.use(express.json({ limit: '1000kb' }));
       app.use(express.urlencoded({ extended: false }));
+      // Middleware to parse cookies
+      app.use(cookieParser(cnf.cookieSecret));
       // Serve public
       // app.use(express.static(path.join(process.cwd(), "public")));
       app.use(
@@ -110,8 +112,7 @@ export default function getApplication(opt = { cnf: getConfig(), log: getLogger(
       }
 
       app.listen(cnf.port, () => {
-        log.info(`Server running on p
-          ort ${cnf.port}`);
+        log.info(`Server running on port ${cnf.port}`);
       });
     },
     async stop() {
