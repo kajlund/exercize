@@ -51,6 +51,7 @@ export default function (table = '') {
    */
   async function update(conditions, data) {
     try {
+      data.updatedAt = new Date().toISOString();
       log.debug(conditions, data, `dao.update in table ${table}`);
       const numAffected = await db.knex(table).where(conditions).update(data);
       return numAffected;
